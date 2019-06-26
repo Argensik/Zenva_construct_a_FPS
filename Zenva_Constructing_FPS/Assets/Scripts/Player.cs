@@ -46,7 +46,10 @@ public class Player : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
 
-        rig.velocity = new Vector3(x, rig.velocity.y, z);
+        Vector3 dir = transform.right * x + transform.forward * z;
+        dir.y = rig.velocity.y;
+
+        rig.velocity = dir;
     }
 
     void CamLook()
