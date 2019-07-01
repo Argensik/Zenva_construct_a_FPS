@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform muzzle;
 
-    public int curAommo;
+    public int curAmmo;
     public int maxAmmo;
     public bool infiniteAmmo;
 
@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
     {
         if(Time.time - lastShootTime >= shootRate)
         {
-            if (curAommo > 0 || infiniteAmmo == true)
+            if (curAmmo > 0 || infiniteAmmo == true)
                 return true;
         }
 
@@ -39,6 +39,12 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
+        lastShootTime = Time.time;
+        curAmmo--;
 
+        GameObject bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
+
+        //set the velocity
+        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
     }
 }

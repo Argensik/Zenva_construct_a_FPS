@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
         cam = Camera.main;
         rig = GetComponent<Rigidbody>();
         weapon = GetComponent<Weapon>();
+
+        //disable cursor
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
