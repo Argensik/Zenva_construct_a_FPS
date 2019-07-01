@@ -16,18 +16,14 @@ public class Player : MonoBehaviour
 
     Camera cam;
     Rigidbody rig;
+    Weapon weapon;
 
     private void Awake()
     {
         //get the components
         cam = Camera.main;
         rig = GetComponent<Rigidbody>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        weapon = GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -37,6 +33,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
             JumpFunction();
+
+        if (Input.GetButton("Fire1"))
+        {
+            if (weapon.CanShoot())
+                weapon.Shoot();
+        }
 
         CamLook();
     }

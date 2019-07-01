@@ -13,15 +13,32 @@ public class Weapon : MonoBehaviour
 
     public float bulletSpeed;
 
-    // Start is called before the first frame update
-    void Start()
+    public float shootRate;
+    float lastShootTime;
+
+    private bool isPlayer;
+
+    private void Awake()
     {
-        
+        //are we attached to the player?
+        if (GetComponent<Player>())
+            isPlayer = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    //can we shoot a bullet?
+    public bool CanShoot()
     {
-        
+        if(Time.time - lastShootTime >= shootRate)
+        {
+            if (curAommo > 0 || infiniteAmmo == true)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void Shoot()
+    {
+
     }
 }
