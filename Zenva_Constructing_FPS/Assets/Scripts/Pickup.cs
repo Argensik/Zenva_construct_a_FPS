@@ -21,6 +21,25 @@ public class Pickup : MonoBehaviour
     Vector3 startPos;
     bool bobbingUp;
 
+    private void Start()
+    {
+        //set the start position
+        startPos = transform.position;
+    }
+
+    private void Update()
+    {
+        //rotation
+        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+
+        //bob up and down
+        Vector3 offset = (bobbingUp == true ? new Vector3(0, bobHeight/2, 0) : new Vector3(0, -bobHeight/2, 0));
+        transform.position = Vector3.MoveTowards(transform.position, startPos + offset, bobSpeed * Time.deltaTime);
+
+        if (transform.position == startPos + offset)
+            bobbingUp = !bobbingUp;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
