@@ -123,3 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   lifetime: 3
+  hitParticle: {fileID: 7054992471080046689, guid: ff1b23abfd4406944a4c2587c2e2b90e,
+    type: 3}
